@@ -9,13 +9,7 @@ myPACKAGES_ROCKY="ansible-core ansible-collection-redhat-rhel_mgmt epel-release 
 myPACKAGES_OPENSUSE="ansible apache2-utils cracklib wget"
 
 
-myINSTALLER=$(cat << "EOF"
- _____     ____       _      ___           _        _ _
-|_   _|   |  _ \ ___ | |_   |_ _|_ __  ___| |_ __ _| | | ___ _ __
-  | |_____| |_) / _ \| __|   | || '_ \/ __| __/ _` | | |/ _ \ '__|
-  | |_____|  __/ (_) | |_    | || | | \__ \ || (_| | | |  __/ |
-  |_|     |_|   \___/ \__|  |___|_| |_|___/\__\__,_|_|_|\___|_|
-EOF
+myINSTALLER=$(ls
 )
 
 # Check if running with root privileges
@@ -30,13 +24,6 @@ fi
 mySUPPORTED_DISTRIBUTIONS=("AlmaLinux" "Debian GNU/Linux" "Fedora Linux" "openSUSE Tumbleweed" "Raspbian GNU/Linux" "Rocky Linux" "Ubuntu")
 myCURRENT_DISTRIBUTION=$(awk -F= '/^NAME/{print $2}' /etc/os-release | tr -d '"')
 
-if [[ ! " ${mySUPPORTED_DISTRIBUTIONS[@]} " =~ " ${myCURRENT_DISTRIBUTION} " ]];
-  then
-    echo "### Only the following distributions are supported: AlmaLinux, Fedora, Debian, openSUSE Tumbleweed, Rocky Linux and Ubuntu."
-    echo "### Please follow the T-Pot documentation on how to run T-Pot on macOS, Windows and other currently unsupported platforms."
-    echo
-    exit 1
-fi
 
 # Begin of Installer
 echo "$myINSTALLER"

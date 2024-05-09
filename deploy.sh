@@ -6,16 +6,7 @@ myADJECTIVE=$(shuf -n1 installer/install/a.txt)
 myNOUN=$(shuf -n1 installer/install/n.txt)
 myENV_FILE="$HOME/tpotce/.env"
 
-myDEPLOY=$(cat << "EOF"
-
- ____   [ T-Pot ]                  ____             _
-/ ___|  ___ _ __  ___  ___  _ __  |  _ \  ___ _ __ | | ___  _   _
-\___ \ / _ \  _ \/ __|/ _ \|  __| | | | |/ _ \  _ \| |/ _ \| | | |
- ___) |  __/ | | \__ \ (_) | |    | |_| |  __/ |_) | | (_) | |_| |
-|____/ \___|_| |_|___/\___/|_|    |____/ \___| .__/|_|\___/ \__, |
-                                             |_|            |___/
-
-EOF
+myDEPLOY=$(ls
 )
 
 # Check if the script is running in a HIVE installation

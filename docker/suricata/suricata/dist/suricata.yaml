@@ -612,9 +612,9 @@ logging:
 
 # Linux high speed capture support
 af-packet:
-  - interface: default
+  - interface: eth0
     # Number of receive threads. "auto" uses the number of cores
-    threads: 1
+    #threads: auto
     # Default clusterid. AF_PACKET will load balance packets based on flow.
     cluster-id: 99
     # Default AF_PACKET cluster type. AF_PACKET can load balance per flow or per hash.
@@ -632,33 +632,33 @@ af-packet:
     cluster-type: cluster_flow
     # In some fragmentation cases, the hash can not be computed. If "defrag" is set
     # to yes, the kernel will do the needed defragmentation before sending the packets.
-    defrag: no
+    defrag: yes
     # To use the ring feature of AF_PACKET, set 'use-mmap' to yes
-    use-mmap: no
+    #use-mmap: yes
     # Lock memory map to avoid it being swapped. Be careful that over
     # subscribing could lock your system
-    mmap-locked: yes
+    #mmap-locked: yes
     # Use tpacket_v3 capture mode, only active if use-mmap is true
     # Don't use it in IPS or TAP mode as it causes severe latency
-    tpacket-v3: yes
+    #tpacket-v3: yes
     # Ring size will be computed with respect to "max-pending-packets" and number
     # of threads. You can set manually the ring size in number of packets by setting
     # the following value. If you are using flow "cluster-type" and have really network
     # intensive single-flow you may want to set the "ring-size" independently of the number
     # of threads:
-    ring-size: 2048
+    #ring-size: 2048
     # Block size is used by tpacket_v3 only. It should set to a value high enough to contain
     # a decent number of packets. Size is in bytes so please consider your MTU. It should be
     # a power of 2 and it must be multiple of page size (usually 4096).
-    block-size: 32768
+    #block-size: 32768
     # tpacket_v3 block timeout: an open block is passed to userspace if it is not
     # filled after block-timeout milliseconds.
     #block-timeout: 10
     # On busy systems, set it to yes to help recover from a packet drop
     # phase. This will result in some packets (at max a ring flush) not being inspected.
-    use-emergency-flush: yes
+    #use-emergency-flush: yes
     # recv buffer size, increased value could improve performance
-    buffer-size: 32768
+    # buffer-size: 32768
     # Set to yes to disable promiscuous mode
     # disable-promisc: no
     # Choose checksum verification mode for the interface. At the moment
@@ -671,7 +671,7 @@ af-packet:
     #  - auto: Suricata uses a statistical approach to detect when
     #  checksum off-loading is used.
     # Warning: 'capture.checksum-validation' must be set to yes to have any validation
-    checksum-checks: kernel
+    #checksum-checks: kernel
     # BPF filter to apply to this interface. The pcap filter syntax applies here.
     #bpf-filter: port 80 or udp
     # You can use the following variables to activate AF_PACKET tap or IPS mode.
@@ -808,7 +808,7 @@ pcap:
     # On Linux, pcap will try to use mmap'ed capture and will use "buffer-size"
     # as total memory used by the ring. So set this to something bigger
     # than 1% of your bandwidth.
-    buffer-size: 16777216
+    #buffer-size: 16777216
     #bpf-filter: "tcp and port 25"
     # Choose checksum verification mode for the interface. At the moment
     # of the capture, some packets may have an invalid checksum due to
@@ -1997,7 +1997,7 @@ pfring:
     # If bypass is set then the PF_RING hw bypass is activated, when supported
     # by the network interface. Suricata will instruct the interface to bypass
     # all future packets for a flow that need to be bypassed.
-    bypass: no
+    #bypass: yes
 
     # Choose checksum verification mode for the interface. At the moment
     # of the capture, some packets may have an invalid checksum due to
@@ -2017,7 +2017,7 @@ pfring:
   #  cluster-type: cluster_flow
   # Put default values here
   - interface: default
-    threads: 2
+    #threads: 2
 
 # For FreeBSD ipfw(8) divert(4) support.
 # Please make sure you have ipfw_load="YES" and ipdivert_load="YES"
